@@ -1,0 +1,262 @@
+# =============================================
+# springboot configurations
+# ---------------------------------------------
+spring:
+  application:
+    name: ${OPENSHIFT_APP_NAME:database-connector-ods}
+  datasource:  
+         driver-class-name: oracle.jdbc.OracleDriver
+         url: ${DATABASE_CONN_URL}
+         username: ${DATABASE_CONN_USERNAME}
+         password: ${DATABASE_CONN_PASSWORD}
+         type: ${DATABASE_CONN_POOL_TYPE}
+         oracleucp:
+           connection-factory-class-name: oracle.jdbc.pool.OracleDataSource
+           connection-pool-name: ${DBCONNECTOR_POOL:DBConnectorPool}
+           connection-wait-timeout: ${UCP_POOL_CONN_WAIT_TIMEOUT}
+           max-idle-time: ${UCP_POOL_CONN_MAX_IDLE_TIME}
+           abandoned-connection-timeout: ${UCP_POOL_CONN_ABANDONED_CONNECTION_TIMEOUT}
+           inactive-connection-timeout: ${UCP_POOL_CONN_INACTIVE_CONNECTION_TIMEOUT}
+           connection-harvest-trigger-count: ${UCP_POOL_CONN_CONNECTION_HARVEST_TRIGGER_COUNT}
+           connection-harvest-max-count: ${UCP_POOL_CONN_CONNECTION_HARVEST_MAX_COUNT}
+           login-timeout: ${UCP_POOL_CONN_LOGIN_TIMEOUT}
+           initial-pool-size: ${UCP_POOL_CONN_INITIAL_POOL_SIZE}
+           max-pool-size: ${UCP_POOL_CONN_MAX_POOL_SIZE}
+           min-pool-size: ${UCP_POOL_CONN_MIN_POOL_SIZE}
+           sql-for-validate-connection: 'select * from dual'
+           
+
+server:
+  address: 0.0.0.0
+  port: 8080         
+            
+
+# =============================================
+# database connector configurations
+# ---------------------------------------------
+connector:
+    database:
+        name: cachedb
+        api:
+            basepath: api/connector/db/cachedb
+        beans:
+            implementationPath: connector.database.beans.impl
+            
+            dao:
+                v1:
+                    customerImplclasspath: com.alahli.middleware.customer.dao.ODSDBConnectorImplDao
+                    accountsImplclasspath: com.alahli.middleware.account.dao.ODSDBConnectorImplDao
+                    creditcardImplclasspath: com.alahli.middleware.creditcard.dao.ODSDBConnectorImplDao
+                    repoCacheImplclasspath: com.alahli.middleware.repocache.dao.RepoCacheDBConnectorImplDao    
+                v2:
+                    customerImplclasspath: com.alahli.middleware.customer.dao.ODSDBConnectorImplDao
+#                    accountsImplclasspath: com.alahli.middleware.accountservice.dao.EAIDBConnectorImplDao
+                        
+            impl:
+                GetProject:
+                    httpmethod: GET
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                AddProject:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                UpdateProject:
+                    httpmethod: PUT
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                DeleteProject:
+                    httpmethod: DELETE
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                GetProcess:
+                    httpmethod: GET
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                AddProcess:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                UpdateProcess:
+                    httpmethod: PUT
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                DeleteProcess:
+                    httpmethod: DELETE
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                GetProcessParams:
+                    httpmethod: GET
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                AddProcessParams:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                UpdateProcessParams:
+                    httpmethod: PUT
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                DeleteProcessParams:
+                    httpmethod: DELETE
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                DeleteCache:
+                    httpmethod: DELETE
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+#                   v2: ${connector.database.beans.dao.v2.customerImplclasspath}
+                UpdateCache:
+                    httpmethod: PUT
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+#                   v2: ${connector.database.beans.dao.v2.customerImplclasspath}
+                AddCache:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+#                   v2: ${connector.database.beans.dao.v2.customerImplclasspath}
+                GetAccountType:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.accountsImplclasspath}
+#                    v2: ${connector.database.beans.dao.v2.customerImplclasspath}
+                GetCustomerDetails:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                    v2: ${connector.database.beans.dao.v2customerImplclasspath}
+                GetCustomerOneView:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath}   
+                GetRetailCustomerDetails:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath} 
+                GetPFADetails:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath} 
+                GetCifByWatheeq:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath} 
+                GetCifDetailsByIDs:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath} 
+                GetCorporateCustomerDetails:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath} 
+                FindCif:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1customerImplclasspath} 
+                GetPayrollAccount:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.creditcardImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1.creditcardImplclasspath}
+                GetLookupTable:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1.customerImplclasspath}
+                GetCIFDetailsByMobile:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+#                   v2: ${connector.database.beans.dao.v1.customerImplclasspath}
+                GetLookuptables:
+                    httpmethod: POST
+                    # v1: ${connector.database.beans.dao.v1.customerImplclasspath}
+                    v2: ${connector.database.beans.dao.v2.customerImplclasspath}
+                GetProcessConfig:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                GetProcessData:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                AddProcessDataToAudit:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}
+                GetProcessConfigsp:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath}                    
+                GetProcessConfigSelect:
+                    httpmethod: POST
+                    v1: ${connector.database.beans.dao.v1.repoCacheImplclasspath} 
+        errors:
+            databaseError:
+                system: ODS
+                timeout: 
+                        errorNumber: 710
+                        errorDescription: ${connector.database.errors.database-error.system} Time out
+                        nativeError: TIMEOUT
+                general:
+                        errorNumber: 709
+                        errorDescription: ${connector.database.errors.database-error.system} Application Error
+                        nativeError: SQL_EXCEPTION                     
+            applicationError:
+                system: MW
+                timeout:
+                        errorNumber: 782
+                        errorDescription: ${connector.database.errors.application-error.system} Time out
+                        nativeError: TIMEOUT
+                general:
+                        errorNumber: 783
+                        errorDescription: ${connector.database.errors.application-error.system} Application Error
+                        nativeError: GENERAL_EXCEPTION                                                                                                                             
+         
+  
+#        datasource:
+#            odsdb:
+#                driver-class-name: oracle.jdbc.OracleDriver
+#                name: bancsDay
+#                password: appworks202
+#                type: oracle.ucp.jdbc.PoolDataSourceImpl
+#                url: jdbc:oracle:thin:@//192.168.10.102:1521/orcl
+#               username: c##appworks202
+#                configuration:
+#                    connection-factory-class-name: oracle.jdbc.pool.OracleDataSource
+#                    connection-pool-name: dh_cordysdb
+#                    initial-pool-size: 1
+#                    max-pool-size: 1
+#                    min-pool-size: 1
+#                    sql-for-validate-connection: select * from dual
+#                    type: oracle.ucp.jdbc.PoolDataSource    
+
+
+# =============================================
+# configstore api parameters
+# ---------------------------------------------
+#configStoreConnector:
+#  apiKeyName: configstore
+#  host: ${CONFIGSTORECONNECTOR_HOST}
+#  port: 8080
+#  contextPath: ${CONFIGSTORECONNECTOR_CONTEXTPATH} 
+   
+# =============================================
+# EAI DB Connector api parameters
+# ---------------------------------------------
+#EAIDBConnector:
+#  apiKeyName: eai 
+#  host: ${EAIDBCONNECTOR_HOST}
+#  contextPath: ${EAIDBCONNECTOR_CONTEXTPATH}
+            
+logging:
+   config: classpath:logback-spring.xml
+   componentType: ODSDB_CONNECTOR
+   isloggingDisabled: ${IS_LOGGING_DISABLED:false}
+   isAPIsLoggingDisabled:
+      GetAccountTransactions: ${IS_API_LOGGING_DISABLED :false}
+   APIsKeys:
+#      GetAccountTransactions:
+#         fields:
+#          - accountId
+#          - transactionType
+#         fieldsJsonPath:
+#            accountId: AccountTransactionsRequest.accountId
+#            transactionType: AccountTransactionsRequest.transactionType  
+
+
+
+camel:
+  opentracing:
+    enabled: ${JAEGER_TRACING_FLAG:false}
+  servlet:
+    mapping:
+      context-path: /*
+  
+JAEGER_SAMPLER_PARAM: 1.0
+JAEGER_SAMPLER_TYPE: const
+JAEGER_SERVICE_NAME: ${JAEGER_SERVICE_NAME:ODSDB_CONNECTOR}
+JAEGER_ENDPOINT: ${JAEGER_ENDPOINT}	   
+
+# Its a temp property to know the envirnoment test: DH and live: SNB
+testRegion:
+ name: ${TESTING_REGION_VALUE:test} 
+    
+    

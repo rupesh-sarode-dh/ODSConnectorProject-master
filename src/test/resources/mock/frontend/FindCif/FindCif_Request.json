@@ -1,0 +1,8 @@
+{
+  "CifRequest": {
+    "id": "1",
+    "idType": "savings",
+    "option": "option",
+    "parentNode": 1
+  }
+}

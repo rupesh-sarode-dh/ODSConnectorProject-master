@@ -1,0 +1,11 @@
+{
+  "RetailCustomerDetailsRequest": {
+    "id": "",
+    "cif": "92166408",
+    "account": "",
+    "branch": "",
+    "teller": "",
+    "serviceName": "customerdetails",
+    "channel": ""
+  }
+}

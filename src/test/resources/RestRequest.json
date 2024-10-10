@@ -1,0 +1,6 @@
+{
+  "CustomerInquiryRequest": {
+    "ecnId": 12345678,
+    "isRequestAuthentication": false
+  }
+}

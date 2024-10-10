@@ -1,0 +1,12 @@
+{
+  "CustomerDetailsRequest": {
+    "cif": "string",
+    "account": "string",
+    "branch": "string",
+    "teller": "string",
+    "incomeOption": "string",
+    "wasselOption": "string",
+    "serviceName": "string",
+    "channel": "string"
+  }
+}

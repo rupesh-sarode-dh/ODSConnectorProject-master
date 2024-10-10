@@ -1,0 +1,7 @@
+{
+    "LookupTablesRequest": {
+        "tableName": [
+            "LKP_TIT"
+        ]
+    }
+}

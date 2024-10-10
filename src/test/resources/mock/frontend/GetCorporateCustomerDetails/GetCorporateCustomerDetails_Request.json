@@ -1,0 +1,11 @@
+{
+	"CorporateCustomerDetailsRequest": {
+		"id": "",
+		"cif": "10007534",
+		"account": "",
+		"branch": "",
+		"teller": "",
+		"serviceName": "customerdetails",
+		"channel": ""
+	}
+}

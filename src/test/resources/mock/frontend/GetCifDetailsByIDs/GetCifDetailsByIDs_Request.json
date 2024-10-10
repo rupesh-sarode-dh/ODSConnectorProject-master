@@ -1,0 +1,10 @@
+{
+  "CifDetailsByIDsRequest": {
+    "primaryId": "primaryid",
+    "primaryIdType": "ptype",
+    "secondaryId": "secondaryid",
+    "secondaryIdType":"stype",
+    "accountNo" : "05100004252301",
+    "accountType":"atype"
+  }
+}

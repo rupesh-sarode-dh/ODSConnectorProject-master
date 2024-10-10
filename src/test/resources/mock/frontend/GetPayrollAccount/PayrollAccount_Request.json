@@ -1,0 +1,6 @@
+{
+    "PayrollAccountRequest": {
+        "cif": "123",
+        "languageCode": "EN"
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<!-- <pattern>%msg%n</pattern> -->
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+				<level>${LOGGING_SEVERITY}</level> <!-- Only accept INFO at DEBUG level or higher -->
+		</filter>			
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<!-- LOCATION of FILE WHERE YOU WANT TO SAVE -->
+		<File>${LOGGING_FILE_PATH}</File>
+		<encoder>
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.alahli.middleware.logging.AppLogger" level="trace">
+		<appender-ref ref="FILE"/>
+	</logger>
+	<!--<root level="DEBUG">-->
+	<root level="${LOGGING_SEVERITY}">
+		<appender-ref ref="STDOUT"/>
+	</root>
+</configuration>

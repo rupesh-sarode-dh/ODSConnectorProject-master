@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <!-- Define a traditional camel context here -->
+    <!-- <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">-->
+    <!-- <route id="log-route">
+<from id="message-timer" uri="timer:foo?period=1s"/>
+<setBody id="set-message">
+<simple>Hello from Camel!</simple>
+</setBody>
+<log id="log-message" message=">>> ${body} : ${id}"/>
+</route>-->
+    <!--</camelContext>-->
+    <!-- <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost/bancs" />
+        <property name="username" value="root" />
+        <property name="password" value="ncb$#1234" />
+    </bean>-->
+    <bean class="com.alahli.middleware.logging.filter.LogFilter" id="LogFilter"/>
+    <bean class="com.alahli.middleware.logging.AppLogger" id="AppLogger"/>
+    <bean class="com.alahli.middleware.utility.Utils.DateUtil" id="oDateUtils"/>
+    <bean class="com.alahli.middleware.repocache.dao.RepoCacheDBConnectorImplDao" id="oRepoCacheDBConnectorImplDao"/>
+</beans>
